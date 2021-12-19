@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="titulo">Editar Película</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <figure>
+        <img src="/img/logo-DH.png" alt="Logo Digital House">
+    </figure>
+    <p>
+        <a href="/">Home</a>
+    </p>
+    <br> 
+    <h1 class="titulo">Película a Editar:  <%= Movie.title %></h1>
+    <section class="formulario">
+        <form action="/movies/update/<%= Movie.id %>?_method=PUT" method="POST">
+            <label for="title">Title </label>
+            <p><input type="text" name="title" id="" value="<%= Movie.title %>" required></p>
+            
+            <label for="rating">Rating </label>
+            <p><input type="number" name="rating" id="" value="<%= Movie.rating %>" required></p>
+            
+            <label for="awards">Awards </label>
+            <p><input type="number" name="awards" id="" value="<%= Movie.awards %>" required></p>
+            
+            <label for="release_date">Release date </label>
+            <p><input type="date" name="release_date" id="" value="<%= date %>" required></p>
+            
+            <label for="length">Length </label>
+            <p><input type="number" name="length" id="" value="<%= Movie.length %>" required></p>
+            
+            <label for="genre_id">Genre </label>
+            <p>
+                <select name="genre_id" id="" required>
+                    <% allGenres.forEach(genre => { %>
+                    <option value="<%= genre.id %>" <% if (Movie.genre_id == genre.id) { %><%= 'selected' %><% }; %>><%= genre.name %></option>
+                    <% }); %>
+                </select>
+            </p>
+
+            <br>
+            <p> <button class="botonAgregar" type="submit">Actualizar</button>
+            <br>
+            <p>
+                <a  class="botonVolver" href="/movies">Listado de Películas</a></p>
+            </p>
+            
+        </form>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
